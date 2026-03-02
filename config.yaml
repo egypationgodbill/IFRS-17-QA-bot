@@ -1,17 +1,25 @@
 app:
-    config:
-        name: 'mistral-streamlit-app'
+  config:
+    name: 'ifrs17-qa-bot'
 
 llm:
-    provider: huggingface
-    config:
-        model: 'mistralai/Mistral-7B-Instruct-v0.2'
-        temperature: 0.1
-        max_tokens: 250
-        top_p: 0.1
-        stream: true
+  provider: huggingface
+  config:
+    model: 'mistralai/Mistral-7B-Instruct-v0.2'
+    temperature: 0.1
+    max_tokens: 500
+    top_p: 0.1
+    stream: true
+    system_prompt: >
+      You are an expert assistant specializing in IFRS 17 Insurance Contracts.
+      Your audience is actuaries and finance professionals working on IFRS 17 implementation.
+      Answer questions accurately and concisely using the provided context.
+      When relevant, reference specific paragraphs or sections of IFRS 17.
+      If a question falls outside IFRS 17 or insurance accounting, politely redirect
+      the user back to IFRS 17 topics.
+      Do not speculate beyond the standard or established actuarial guidance.
 
 embedder:
-    provider: huggingface
-    config:
-        model: 'sentence-transformers/all-mpnet-base-v2'
+  provider: huggingface
+  config:
+    model: 'sentence-transformers/all-mpnet-base-v2'
